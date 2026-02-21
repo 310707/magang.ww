@@ -1,0 +1,278 @@
+📋 CHECKLIST ADMINISTRASI WEBSITE PENERIMAAN MAHASISWA
+
+================================================================================
+FASE 1: SETUP AWAL (Hari ke-1)
+================================================================================
+
+SETUP TEKNIS
+❌ [ ] Download/copy folder Penerimaan-Mahasiswa-Pertanian
+❌ [ ] Buka di VS Code atau text editor
+❌ [ ] Test di browser (F5 atau Live Server)
+❌ [ ] Check semua halaman loading dengan baik
+
+DATA UNIVERSITAS
+❌ [ ] Siapkan logo universitas/fakulas
+❌ [ ] Siapkan nomor telepon kontak resmi
+❌ [ ] Siapkan email resmi (admisi@...)
+❌ [ ] Siapkan alamat lengkap fakultas
+❌ [ ] Siapkan jam operasional
+❌ [ ] Siapkan URL media sosial
+   - [ ] Facebook
+   - [ ] Instagram
+   - [ ] Twitter
+   - [ ] YouTube
+
+INFORMASI PROGRAM
+❌ [ ] Visi misi program studi (copy dari brosur)
+❌ [ ] Keunggulan program (3-5 poin utama)
+❌ [ ] Persyaratan khusus program (jika ada)
+❌ [ ] Profil lulusan
+❌ [ ] Peluang karir
+
+================================================================================
+FASE 2: EDIT KONTEN (Hari ke-2)
+================================================================================
+
+EDIT TEXT DI HTML
+❌ [ ] Edit nomor telepon
+❌ [ ] Edit email kontak
+❌ [ ] Edit alamat kampus
+❌ [ ] Edit jam operasional
+❌ [ ] Edit visi & misi
+❌ [ ] Edit keunggulan program (update bullets)
+❌ [ ] Edit jadwal penerimaan gelombang 1-2
+❌ [ ] Edit kuota penerimaan
+❌ [ ] Edit tanggal daftar ulang
+
+EDIT LINK MEDIA SOSIAL
+❌ [ ] Facebook: https://facebook.com/...
+❌ [ ] Instagram: https://instagram.com/...
+❌ [ ] Twitter: https://twitter.com/...
+❌ [ ] YouTube: https://youtube.com/...
+
+================================================================================
+FASE 3: TAMBAH FOTO (Hari ke-3)
+================================================================================
+
+PREPARE GAMBAR
+❌ [ ] Siapkan 7 foto berkualitas HD:
+   ❌ [ ] 1x Foto aktivitas program studi (800x600 px)
+   ❌ [ ] 1x Gedung/fasilitas utama (800x600 px)
+   ❌ [ ] 1x Laboratorium modern (800x600 px)
+   ❌ [ ] 1x Lahan praktik pertanian (800x600 px)
+   ❌ [ ] 1x Mahasiswa diskusi/belajar (800x600 px)
+   ❌ [ ] 1x Event/acara kampus (800x600 px)
+   ❌ [ ] 1x Fasilitas lainnya (800x600 px)
+
+RESIZE & COMPRESS FOTO
+❌ [ ] Resize 800x600 px (atau lebih besar tapi konsisten)
+❌ [ ] Compress ke < 500KB per file (pakai TinyPNG)
+❌ [ ] Pastikan format JPG (tidak PNG, unless transparent needed)
+❌ [ ] Periksa kualitas visual (tidak blur atau pixelated)
+
+UPLOAD FOTO KE PROJECT
+❌ [ ] Rename file:
+   - program-agribisnis.jpg
+   - kampus-1.jpg
+   - kampus-2.jpg
+   - kampus-3.jpg
+   - kampus-4.jpg
+   - kampus-5.jpg
+   - kampus-6.jpg
+
+❌ [ ] Copy ke folder /images/
+❌ [ ] Verify file sudah ada:
+   ❌ [ ] /Penerimaan-Mahasiswa-Pertanian/images/program-agribisnis.jpg
+   ❌ [ ] /Penerimaan-Mahasiswa-Pertanian/images/kampus-1.jpg
+   ❌ [ ] dst...
+
+JIKA TIDAK PUNYA FOTO ASLI
+❌ [ ] Download foto gratis dari Unsplash (https://unsplash.com)
+❌ [ ] Cari: "agriculture", "farming", "laboratory", "students"
+❌ [ ] Copy link gambar
+❌ [ ] Ganti src di HTML dengan download link tersebut
+❌ [ ] CATATAN: Nanti bisa diganti dengan foto asli kapan saja
+
+================================================================================
+FASE 4: TESTING (Hari ke-4)
+================================================================================
+
+DESKTOP TESTING
+❌ [ ] Test di Chrome desktop
+❌ [ ] Test di Firefox desktop
+❌ [ ] Test di Safari (jika ada Mac)
+❌ [ ] Semua link navigasi berfungsi
+❌ [ ] Foto tampil dengan baik
+❌ [ ] Text readable dan formatnya benar
+❌ [ ] Warna tema sesuai brand
+
+MOBILE TESTING
+❌ [ ] Test di iPhone (minimum 375px)
+❌ [ ] Test di Android (minimum 375px)
+❌ [ ] Hamburger menu berfungsi
+❌ [ ] Scroll smooth (tidak lag)
+❌ [ ] Tombol kontras dan mudah diklik
+❌ [ ] Foto tidak terlalu besar
+❌ [ ] Text tidak terpotong
+
+FITUR TESTING
+❌ [ ] Tombol "Daftar Sekarang" berfungsi (scroll ke form)
+❌ [ ] Tombol "Kirim Pesan" berfungsi (test form)
+❌ [ ] Form validate input (jangan kirim jika kosong)
+❌ [ ] Success message muncul setelah submit
+❌ [ ] Scroll-to-top button muncul saat scroll
+❌ [ ] Smooth scroll bekerja di semua browser
+
+TABLE JADWAL
+❌ [ ] Jadwal penerimaan tampil dengan benar
+❌ [ ] Nomor urut benar
+❌ [ ] Tanggal konsisten dan masuk akal
+❌ [ ] Responsive di mobile (bisa scroll horizontal)
+
+FORM KONTAK
+❌ [ ] Field: Nama (required)
+❌ [ ] Field: Email (required + format validation)
+❌ [ ] Field: Notelp (required + format validation)
+❌ [ ] Field: Subjek (dropdown)
+❌ [ ] Field: Pesan (textarea, required)
+❌ [ ] Tombol submit (disabled saat loading)
+❌ [ ] Error message muncul jika ada error
+❌ [ ] Success message muncul jika berhasil
+
+================================================================================
+FASE 5: SETUP EMAIL (OPTIONAL)
+================================================================================
+
+JIKA INGIN FORM KIRIM REAL EMAIL
+❌ [ ] Pilih metode:
+   ❌ [ ] Formspree (easiest)
+   ❌ [ ] EmailJS (free, no backend)
+   ❌ [ ] Custom PHP backend
+
+FORMSPREE SETUP
+❌ [ ] Daftar di https://formspree.io
+❌ [ ] Buat form baru
+❌ [ ] Copy form ID
+❌ [ ] Update form action di HTML
+❌ [ ] Test submit form
+❌ [ ] Check email masuk
+
+================================================================================
+FASE 6: DEPLOY KE INTERNET
+================================================================================
+
+PILIH PLATFORM HOSTING
+❌ [ ] Opsi 1: Netlify (Gratis, recommended)
+   ❌ [ ] Push ke GitHub
+   ❌ [ ] Connect Netlify ke GitHub
+   ❌ [ ] Deploy
+   ❌ [ ] Set custom domain jika ada
+
+❌ [ ] Opsi 2: GitHub Pages (Gratis)
+   ❌ [ ] Push code ke GitHub
+   ❌ [ ] Enable GitHub Pages di settings
+   ❌ [ ] Akses via username.github.io/repo-name
+
+❌ [ ] Opsi 3: Hosting berbayar (Hostinger, dll)
+   ❌ [ ] Upload via FTP
+   ❌ [ ] Set domain
+   ❌ [ ] Setup SSL/HTTPS
+
+POST-DEPLOY
+❌ [ ] Test semua fitur online
+❌ [ ] Check form email (jika setup)
+❌ [ ] Test dari berbagai browser
+❌ [ ] Share URL ke stakeholders
+❌ [ ] Monitor traffic
+
+================================================================================
+FASE 7: PROMOSI & MAINTENANCE
+================================================================================
+
+SEBELUM LAUNCH
+❌ [ ] Inform teknis kampus tentang URL website
+❌ [ ] Print URL di brosur/poster penerimaan
+❌ [ ] Update di website universitas utama
+❌ [ ] Share di media sosial
+
+LAUNCH DAY
+❌ [ ] Announce di Instagram universitas
+❌ [ ] Announce di Facebook universitas
+❌ [ ] Announce di email alumni/calon mahasiswa
+❌ [ ] Monitor traffic & error (check analytics)
+
+AFTER LAUNCH
+❌ [ ] Monitor form submissions daily
+❌ [ ] Reply pertanyaan dalam 24 jam
+❌ [ ] Update status penerimaan berkala
+❌ [ ] Check website maintenance setiap minggu
+❌ [ ] Update foto/berita jika ada event baru
+
+================================================================================
+ONGOING MAINTENANCE
+================================================================================
+
+HARIAN
+❌ [ ] Check form submissions
+❌ [ ] Reply pertanyaan dari calon mahasiswa
+
+MINGGUAN
+❌ [ ] Check website tidak down
+❌ [ ] Update informasi penting jika ada perubahan
+❌ [ ] Monitor performance
+
+BULANAN
+❌ [ ] Review user engagement/traffic
+❌ [ ] Update foto/berita kampus
+❌ [ ] Backup website & database
+❌ [ ] Update jadwal jika ada perubahan
+
+IMPORTANT DATES TO UPDATE
+❌ [ ] 1 Maret: Mulai pendaftaran gelombang 1
+❌ [ ] 20 April: Pengumuman gelombang 1
+❌ [ ] 21 April: Mulai pendaftaran gelombang 2
+❌ [ ] 5 Mei: Pengumuman gelombang 2
+❌ [ ] 6 Mei: Buka daftar ulang
+
+================================================================================
+CONTACTS & REFERENCE
+================================================================================
+
+YANG PERLU DISIAPKAN:
+📞 Nomor Kontak: ________________
+📧 Email Admin: ________________
+🏢 Alamat Kampus: ________________
+🕐 Jam Operasional: ________________
+
+AKUN MEDIA SOSIAL:
+📘 Facebook: ________________
+📷 Instagram: ________________
+🐦 Twitter: ________________
+📺 YouTube: ________________
+
+WEB HOSTING:
+🌐 Nama Domain: ________________
+🔑 Username Hosting: ________________
+📊 Control Panel: ________________
+
+CATATAN PENTING:
+_________________________________________________________________
+_________________________________________________________________
+_________________________________________________________________
+
+================================================================================
+SIGN-OFF
+================================================================================
+
+Diisi oleh: ________________              Tanggal: ________________
+Status Lengkap: ✅ YA / ❌ BELUM
+
+Reviewer:
+Nama: ________________________    Tandatangan: ________________________
+Tanggal: ________________________
+
+Approved:
+Nama: ________________________    Tandatangan: ________________________
+Tanggal: ________________________
+
+================================================= END OF CHECKLIST ==========
