@@ -36,6 +36,27 @@ scrollTopBtn.addEventListener('click', () => {
 // ===== CONTACT FORM HANDLER =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
+// Jika ingin menggunakan Formspree, isi ENDPOINT ini, contoh: 'https://formspree.io/f/xxxxxx'
+const FORMSPREE_ENDPOINT = '';
+
+// --- Google Forms forwarding ---
+// Jika Anda ingin agar pengisian form lokal dikirimkan ke Google Form,
+// isi GOOGLE_FORM_ID dengan ID form (bagian antara /d/e/ dan /viewform)
+// dan isi GOOGLE_FORM_MAPPING dengan pasangan {lokalField: 'entry.123456'}
+// Contoh: { nama: 'entry.111111', email: 'entry.222222', pesan: 'entry.333333' }
+// Dari URL prefilled yang Anda kirim, saya isi ID form dan mapping yang tersedia.
+const GOOGLE_FORM_ID = '1FAIpQLSfWnTVDWmNnKZI3T8tiqktfyQyDFHyQc2knFzyu2WybM0es3A';
+// Mapping berikut diisi dari URL prefilled yang Anda berikan.
+// Asumsi: urutan field pada form lokal adalah [nama, email, notelp, subjek, pesan].
+// Jika urutan berbeda, beri tahu saya agar saya sesuaikan.
+const GOOGLE_FORM_MAPPING = {
+    nama: 'entry.1957495963',
+    email: 'entry.621031545',
+    notelp: 'entry.802918817',
+    subjek: 'entry.1398294925',
+    pesan: 'entry.1584127182'
+};
+const GOOGLE_FORM_ACTION = GOOGLE_FORM_ID ? `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse` : '';
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -67,28 +88,98 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
 
-    // Simulate form submission
+    // Prepare UI
     const btn = contactForm.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
     btn.textContent = 'Mengirim...';
     btn.disabled = true;
 
-    setTimeout(() => {
-        // Here you can send data to server
-        console.log({
-            nama,
-            email,
-            notelp,
-            subjek,
-            pesan,
-            tanggal: new Date().toLocaleString('id-ID')
-        });
+    // If GOOGLE_FORM mapping is configured, forward to Google Form
+    if (GOOGLE_FORM_ID && Object.keys(GOOGLE_FORM_MAPPING).length) {
+        try {
+            const params = new URLSearchParams();
+            if (GOOGLE_FORM_MAPPING.nama) params.append(GOOGLE_FORM_MAPPING.nama, nama);
+            if (GOOGLE_FORM_MAPPING.email) params.append(GOOGLE_FORM_MAPPING.email, email);
+            if (GOOGLE_FORM_MAPPING.notelp) params.append(GOOGLE_FORM_MAPPING.notelp, notelp);
+            if (GOOGLE_FORM_MAPPING.subjek) params.append(GOOGLE_FORM_MAPPING.subjek, subjek);
+            if (GOOGLE_FORM_MAPPING.pesan) params.append(GOOGLE_FORM_MAPPING.pesan, pesan);
 
-        showFormMessage('Pesan Anda telah berhasil dikirim! Terima kasih telah menghubungi kami. Kami akan merespons dalam 24 jam.', 'success');
-        contactForm.reset();
-        btn.textContent = originalText;
-        btn.disabled = false;
-    }, 1500);
+            // Google Forms biasanya menolak CORS, gunakan mode 'no-cors'.
+            fetch(GOOGLE_FORM_ACTION, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            })
+            .then(() => {
+                showFormMessage('Pesan Anda telah dikirim ke Google Form. Terima kasih.', 'success');
+                contactForm.reset();
+            })
+            .catch((err) => {
+                console.error('Error mengirim ke Google Form:', err);
+                showFormMessage('Gagal mengirim ke Google Form. Silakan coba lagi.', 'error');
+            })
+            .finally(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            });
+        } catch (err) {
+            console.error(err);
+            showFormMessage('Terjadi kesalahan saat menyiapkan pengiriman ke Google Form.', 'error');
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }
+    } else if (FORMSPREE_ENDPOINT) {
+        const formData = new FormData();
+        formData.append('nama', nama);
+        formData.append('email', email);
+        formData.append('notelp', notelp);
+        formData.append('subjek', subjek);
+        formData.append('pesan', pesan);
+
+        fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok === false || data.error) {
+                throw new Error(data.error || 'Gagal mengirim pesan');
+            }
+            showFormMessage('Pesan Anda telah berhasil dikirim! Terima kasih.', 'success');
+            contactForm.reset();
+        })
+        .catch(err => {
+            console.error('Form submission error:', err);
+            showFormMessage('Terjadi kesalahan saat mengirim. Silakan coba lagi nanti.', 'error');
+        })
+        .finally(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        });
+    } else {
+        // Fallback: simulasi pengiriman (untuk development tanpa server)
+        setTimeout(() => {
+            console.log({
+                nama,
+                email,
+                notelp,
+                subjek,
+                pesan,
+                tanggal: new Date().toLocaleString('id-ID')
+            });
+
+            showFormMessage('Pesan Anda telah berhasil dikirim! (simulasi)', 'success');
+            contactForm.reset();
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 800);
+    }
 });
 
 function showFormMessage(message, type) {
